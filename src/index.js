@@ -37,15 +37,6 @@ export default {
       });
     }
 
-    // In Netlify, static assets are handled by the platform, so if the asset is not in __STATIC_CONTENT,
-    // it might be a static file that Netlify will serve. We should not return a 404 here.
-    // Instead, we let the request fall through. Netlify will then serve the static file if it exists.
-    if (url.pathname.includes('.')) {
-        return new Response('Not found', { status: 404 });
-    }
-
-
-
     return new Response('Not found', { status: 404 });
   },
 };
