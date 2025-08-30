@@ -1,0 +1,7 @@
+[build]
+  command = "echo 'No build command needed'"
+  publish = "src/static"
+
+[[edge_functions]]
+  path = "/*"
+  function = "main"
