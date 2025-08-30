@@ -5,6 +5,7 @@ const STATIC_FILE_EXTENSIONS = /\.(css|js|html|json|png|jpg|jpeg|gif|ico|svg|wof
 
 export default async (request, context) => {
   const url = new URL(request.url);
+  console.log('Request received:', url.pathname);
 
   // If the request is for the root path or a static file,
   // return without a response to let Netlify's static file handling take over.
