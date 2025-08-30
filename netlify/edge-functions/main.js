@@ -14,6 +14,7 @@ export default async (request, context) => {
 
   // Handle WebSocket connections using Deno's native API
   if (request.headers.get('Upgrade') === 'websocket') {
+    console.log('WebSocket request received:', request.url);
     const pathAndQuery = url.pathname + url.search;
     const targetUrl = `wss://generativelanguage.googleapis.com${pathAndQuery}`;
 
@@ -24,9 +25,12 @@ export default async (request, context) => {
 
     // When the connection to the target is open, start listening for messages.
     targetSocket.onopen = () => {
+      console.log('Connected to target WebSocket:', targetUrl);
       // Forward messages from the client to the target.
       clientSocket.onmessage = (event) => {
+        console.log('Received message from client:', event.data);
         if (targetSocket.readyState === WebSocket.OPEN) {
+          console.log('Sending message to target WebSocket:', event.data);
           targetSocket.send(event.data);
         }
       };
