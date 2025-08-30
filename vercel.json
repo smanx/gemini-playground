@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/src/static/$1" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "runtime": "edge"
+    }
+  },
+  "buildCommand": "echo 'No build command needed for static assets and edge functions'",
+  "outputDirectory": "src/static"
+}
